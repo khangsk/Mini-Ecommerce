@@ -33,6 +33,17 @@ export class ProductService {
     )
 
   }
+
+  searchProducts(keyword: string) {
+
+    // need to build URL based on category id
+    const searchUrl = `${this.baseUrl}/search/findByNameContaining?name=${keyword}`;
+    return this.httpClient.get<GetResponseProduct>(searchUrl).pipe(
+      map(response => response._embedded.products)
+    )
+
+  }
+  
 }
 
 interface GetResponseProduct {
