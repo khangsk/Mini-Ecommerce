@@ -52,4 +52,14 @@ export class CartService {
 
   }
 
+  decrementQuantity(theCartItem: CartItem) {
+    
+    if (--theCartItem.quantity <= 0) {
+      let position: number = this.cartItems.indexOf(theCartItem);
+      this.cartItems.splice(position, 1);
+    }
+
+    this.computeCartTotals();
+  }
+
 }
